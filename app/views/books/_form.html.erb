@@ -14,6 +14,16 @@
       <% end %>
 
       <div class="form-group">
+        <%= f.label :Category %>
+        <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category", class: "form-control") %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :Image %>
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, class: "form-control" %>
       </div>
