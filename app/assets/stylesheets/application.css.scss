@@ -41,7 +41,12 @@ p.alert, p.notice {
 	margin: 0;
 }
 
-
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
 /* Navbar/navigation styles */
 
 .navbar {
