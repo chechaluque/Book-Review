@@ -4,36 +4,42 @@
   </div>
 
   <div class="col-md-8">
-    <h2><%= @book.title %></h2>
-    <h3><%= @book.author %></h3>
-    <h4 class="average-rating">Average Rating</h4>
-      <div class="averge-review-rating" data-score="<%= @average_review %>"></div>
-      <span class="numer-of-reviews"><em>From:</em>  <%= @book.reviews.count %> reviews</span>
-    <p><%= @book.description %></p>
+    <div class="book-info">
+      <h2 class="book-title"><%= @book.title %></h2>
+      <h3 class="book-author"><span>From </span><%= @book.author %></h3>
+      <h4 class="average-rating">Average Rating</h4>
+        <div class="averge-review-rating" data-score="<%= @average_review %>"></div>
+        <span class="numer-of-reviews"><em>Based on:</em>  <%= @book.reviews.count %> reviews</span>
+      <p class="book-desc"><%= @book.description %></p>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-4">
+  <div class="reviews">
     <% if @book.reviews.count > 0 %>
           <h1>Review</h1>
           <%= render @book.reviews %>
       <% end %>
       <br>
     <div>
-      <%= link_to 'Add Review', new_book_review_path(@book), class: "btn btn-default" %>
+      <%= link_to 'Add Review', new_book_review_path(@book), class: "btn btn-custom" %>
     </div>
     <br>
   </div>
+  </div>
 </div>
-  <%= link_to 'Back', books_path, class: "btn btn-info" %>
-<% if user_signed_in? %>
-  <% if @book.user_id == current_user.id %>
-    <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success" %>
 
+<div class="links btn-group">
+    <%= link_to 'Back', books_path, class: "btn btn-info" %>
+  <% if user_signed_in? %>
+    <% if @book.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success" %>
+      <%= link_to 'Delete', book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
   <% end %>
-<% end %>
-
+</div>
 <script>
   $('.review-rating').raty({
     readOnly: true,
